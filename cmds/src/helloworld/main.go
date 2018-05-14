@@ -36,6 +36,21 @@ func main() {
 			postData += fmt.Sprintln(err)
 		}
 		fmt.Fprintf(b, "post data: %v<br/>\n\n", postData)
+
+		values, err := url.ParseQuery(postData)
+		if err != nil {
+			fmt.Fprintln(b, err)
+		}
+
+		for k, v := range values {
+			if len(v) > 0 {
+				requestedPostVars[k] = v[0]
+			} else {
+				requestedPostVars[k] = ""
+			}
+		}
+		fmt.Fprintf(b, "parsed vars: %v<br/>\n\n", requestedPostVars)
+
 	case "GET":
 		queryString := os.Getenv("QUERY_STRING")
 		values, err := url.ParseQuery(queryString)

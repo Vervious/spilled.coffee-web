@@ -34,9 +34,9 @@ func SimpleView(title string, requestedGetVars map[string]string, requestedPostV
     <title>` + title + `</title>
 </head>
 <body>
-<p style="font-size: 1.5em; padding-left: 1.5em;">
+<div style="font-size: 1.5em; padding-left: 1.5em;">
 ` + textBoxes + `
-</p>
+</div>
 <p style="font-size: 1.5em; padding-left: 1.5em; border-left: 2px solid gray;">
 ` + s + `
 </p>
