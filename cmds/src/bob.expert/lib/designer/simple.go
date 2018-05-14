@@ -5,8 +5,25 @@ import (
 	"strconv"
 )
 
-func SimpleView(title string, b *bytes.Buffer) *bytes.Buffer {
+func SimpleView(title string, requestedGetVars map[string]string, requestedPostVars map[string]string, b *bytes.Buffer) *bytes.Buffer {
 	s := b.String()
+
+	// create text boxes
+	textBoxes := ""
+	if len(requestedGetVars) > 0 {
+		textBoxes += "<form method=\"get\">\n"
+		for k, v := range requestedGetVars {
+			textBoxes += k + ": <input type='text' name='" + k + "' value='" + v + "'><br>\n"
+		}
+		textBoxes += "<input type='submit' value='Submit'>\n</form>"
+	}
+	if len(requestedPostVars) > 0 {
+		textBoxes += "<form method=\"post\">\n"
+		for k, v := range requestedPostVars {
+			textBoxes += k + ": <input type='text' name='" + k + "' value='" + v + "'><br>\n"
+		}
+		textBoxes += "<input type='submit' value='Submit'>\n</form>"
+	}
 
 	// do some inefficient concatenation, for now
 	s = `
@@ -17,6 +34,9 @@ func SimpleView(title string, b *bytes.Buffer) *bytes.Buffer {
     <title>` + title + `</title>
 </head>
 <body>
+<p style="font-size: 1.5em; padding-left: 1.5em;">
+` + textBoxes + `
+</p>
 <p style="font-size: 1.5em; padding-left: 1.5em; border-left: 2px solid gray;">
 ` + s + `
 </p>
