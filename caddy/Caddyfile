@@ -1,4 +1,4 @@
-localhost
+localhost:80
 
 browse
 
@@ -9,5 +9,5 @@ git {
     interval -1
     hook /superxyzwebhook 89asdfj1h23987982l34kafipmnxcvb32r8dkfjjgghweuhsdkjf10
     hook_type github
-    then_long sudo /bin/systemctl restart caddy.service
+    then_long sleep 20 && sudo /bin/systemctl restart caddy.service
 }
