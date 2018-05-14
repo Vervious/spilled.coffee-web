@@ -1,7 +1,11 @@
 package designer
 
 import (
+	"bufio"
 	"bytes"
+	"fmt"
+	"net/url"
+	"os"
 	"strconv"
 )
 
@@ -50,4 +54,49 @@ Content-Length: ` + strconv.Itoa(len(s)) + "\n\n" + s
 	b.Reset()
 	b.WriteString(s)
 	return b
+}
+
+// Try to retreive any arguments, putting them into the given (mutable) maps
+func Get(requestedGetVars map[string]string, requestedPostVars map[string]string) error {
+
+	requestMethod := os.Getenv("REQUEST_METHOD")
+	switch requestMethod {
+	case "POST":
+		scanner := bufio.NewScanner(os.Stdin)
+		postData := ""
+		for scanner.Scan() {
+			postData += scanner.Text()
+		}
+		if err := scanner.Err(); err != nil {
+			return err
+		}
+
+		values, err := url.ParseQuery(postData)
+		if err != nil {
+			fmt.Fprintln(b, err)
+		}
+
+		for k, v := range values {
+			if len(v) > 0 {
+				requestedPostVars[k] = v[0]
+			} else {
+				requestedPostVars[k] = ""
+			}
+		}
+	case "GET":
+		queryString := os.Getenv("QUERY_STRING")
+		values, err := url.ParseQuery(queryString)
+		if err != nil {
+			return err
+		}
+		for k, v := range values {
+			if len(v) > 0 {
+				requestedGetVars[k] = v[0]
+			} else {
+				requestedGetVars[k] = ""
+			}
+		}
+	default:
+	}
+	return nil
 }
