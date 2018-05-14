@@ -3,7 +3,6 @@ package designer
 import (
 	"bufio"
 	"bytes"
-	"fmt"
 	"net/url"
 	"os"
 	"strconv"
@@ -73,7 +72,7 @@ func Get(requestedGetVars map[string]string, requestedPostVars map[string]string
 
 		values, err := url.ParseQuery(postData)
 		if err != nil {
-			fmt.Fprintln(b, err)
+			return err
 		}
 
 		for k, v := range values {
