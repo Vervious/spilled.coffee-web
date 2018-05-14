@@ -1,6 +1,9 @@
 package designer
 
-import "bytes"
+import (
+	"bytes"
+	"strconv"
+)
 
 func SimpleView(title string, b *bytes.Buffer) *bytes.Buffer {
 	s := b.String()
@@ -22,7 +25,7 @@ func SimpleView(title string, b *bytes.Buffer) *bytes.Buffer {
 `
 	s = `
 Content-Type: text/html
-Content-Length: ` + len(s) + "\n\n"
+Content-Length: ` + strconv.Itoa(len(s)) + "\n\n"
 
 	// mutate b (for now), may want to consider immutables
 	b.Reset()
