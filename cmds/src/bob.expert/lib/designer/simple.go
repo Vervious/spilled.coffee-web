@@ -23,8 +23,7 @@ func SimpleView(title string, b *bytes.Buffer) *bytes.Buffer {
 </body>
 </html>
 `
-	s = `
-Content-Type: text/html
+	s = `Content-Type: text/html
 Content-Length: ` + strconv.Itoa(len(s)) + "\n\n" + s
 
 	// mutate b (for now), may want to consider immutables
