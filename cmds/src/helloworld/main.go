@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"os"
@@ -25,11 +26,18 @@ func main() {
 	requestMethod := os.Getenv("REQUEST_METHOD")
 	switch requestMethod {
 	case "POST":
-		postData := os.Getenv("POST_DATA")
-		fmt.Fprintf(b, "post data: %v\n\n", postData)
+		scanner := bufio.NewScanner(os.Stdin)
+		postData := ""
+		for scanner.Scan() {
+			postData += scanner.Text()
+		}
+		if err := scanner.Err(); err != nil {
+			postData += fmt.Sprintln(err)
+		}
+		fmt.Fprintf(b, "post data: %v<br/>\n\n", postData)
 	case "GET":
 		queryString := os.Getenv("QUERY_STRING")
-		fmt.Fprintf(b, "query string: %v\n\n", queryString)
+		fmt.Fprintf(b, "query string: %v<br/>\n\n", queryString)
 	default:
 		fmt.Fprintf(b, "No input received.\n")
 	}
