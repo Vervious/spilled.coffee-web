@@ -3,6 +3,8 @@ http://bob.expert http://172.81.182.253 localhost:2015 {
 
     browse
 
+    cgi /helloworld /home/ubuntu/bob.expert/cmds/bin/helloworld
+
     git {
         repo     git@github.com:Vervious/bob.expert.git
         key      /home/ubuntu/.ssh/id_rsa
