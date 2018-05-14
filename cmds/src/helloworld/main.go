@@ -17,5 +17,7 @@ func main() {
 	fmt.Fprintf(b, "Server time at %s is %s\n",
 		os.Getenv("SERVER_NAME"), time.Now().Format(time.RFC1123))
 	b = designer.SimpleView("helloworld", b)
+	fmt.Println("Content-type: text/plain")
+	fmt.Printf("Content-Length: %d\n\n", b.Len())
 	b.WriteTo(os.Stdout)
 }
