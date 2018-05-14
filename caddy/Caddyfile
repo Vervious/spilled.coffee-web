@@ -4,7 +4,7 @@ browse
 
 git {
     repo     git@github.com:Vervious/bob.expert.git
-    key      /home/ubuntu/.ssh/id_rsa
+    key      /var/www/.ssh/id_rsa
     path     /home/ubuntu/bob.expert
     interval -1
     hook /superxyzwebhook 89asdfj1h23987982l34kafipmnxcvb32r8dkfjjgghweuhsdkjf10
