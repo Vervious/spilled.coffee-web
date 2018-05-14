@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"bob.expert/cmds/src/bob.expert/lib/designer"
+	"bob.expert/cmds/pkg/bob.expert/lib/designer"
 )
 
 func main() {
