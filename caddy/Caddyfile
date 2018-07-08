@@ -1,18 +1,14 @@
 
-http://bob.expert http://172.81.182.253 localhost:2015 {
-
-    browse
-
-    cgi /helloworld /home/ubuntu/bob.expert/cmds/bin/helloworld
+http://spilled.coffee http://172.81.182.253 localhost:2019 {
 
     git {
-        repo     git@github.com:Vervious/bob.expert.git
-        key      /home/ubuntu/.ssh/id_rsa
-        path     /home/ubuntu/bob.expert
+        repo     git@github.com:Vervious/spilled.coffee-web.git
+        key      /lib/ssh/ssh/id_rsa
+        path     /home/ubuntu/spilled.coffee-web
         interval -1
-        hook /superxyzwebhook 89asdfj1h23987982l34kafipmnxcvb32r8dkfjjgghweuhsdkjf10
+        hook /superxyzasdfwebhook fo1kkg89fg3nnvvcbvbgfdtrutiuiojkojyiufgljkjeu48ljafsjlfjhldas
         hook_type github
-        then_long bash /home/ubuntu/bob.expert/caddy/redeploy.sh
+        then_long bash /home/ubuntu/spilled.coffee-web/caddy/redeploy.sh
     }
 }
 

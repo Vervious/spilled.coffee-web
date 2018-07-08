@@ -1,21 +1,20 @@
-# bob.expert
-A collection of go commands (for now) that produce content for a webserver, along with a caddy configuration.
+# spilled.coffee
+This repo shares the same pedigree as bob.expert.
 
-Future work may split up the caddy config so that this is a pure go repo.
 
 ```
 alias refresh='sudo systemctl daemon-reload'
-alias caddystart='sudo systemctl start caddy'
-alias caddystatus='sudo systemctl status caddy'
-alias caddystop='sudo systemctl stop caddy'
+alias coffeestart='sudo systemctl start coffee'
+alias coffeestatus='sudo systemctl status coffee'
+alias coffeestop='sudo systemctl stop coffee'
 ```
 
 If webserver is down:
 ```
-caddystart
+coffeestart
 ```
 
 To check status
 ```
-caddystatus
+coffeestatus
 ```
